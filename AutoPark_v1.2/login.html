@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jokerman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="logo-link">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main id="content">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required><br>
+                <input type="password" id="loginPassword" placeholder="Password" required><br>
+                <button type="submit">Login</button>
+            </form>
+            <div id="loginMessage" class="message"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Your existing scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Firebase configuration and login logic -->
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOLjRxraC5K-le7yv-kwvDQPea8Ju3z5s",
+            authDomain: "parkvue-7aad4.firebaseapp.com",
+            projectId: "parkvue-7aad4",
+            storageBucket: "parkvue-7aad4.firebasestorage.app",
+            messagingSenderId: "417337950143",
+            appId: "1:417337950143:web:0c5d9b01aaa51213ee2b0a",
+            measurementId: "G-W6KGZ59QDK"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const messageElement = document.getElementById('loginMessage');
+            
+            // Clear previous messages
+            messageElement.textContent = '';
+            messageElement.classList.remove('error', 'success');
+            
+            // Sign in with email and password
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in successfully
+                    messageElement.textContent = 'Login successful! Redirecting...';
+                    messageElement.classList.add('success');
+                    
+                    // Optionally: Fetch additional user data from Firestore
+                    return db.collection('users').doc(userCredential.user.uid).get();
+                })
+                .then((doc) => {
+                    if (doc.exists) {
+                        console.log("User data:", doc.data());
+                        // You can store user data in session/local storage if needed
+                        localStorage.setItem('user', JSON.stringify(doc.data()));
+                    }
+                    
+                    // Redirect to home page after successful login
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    // Handle errors
+                    let errorMessage = 'Login failed. ';
+                    switch(error.code) {
+                        case 'auth/invalid-email':
+                            errorMessage += 'Invalid email format.';
+                            break;
+                        case 'auth/user-disabled':
+                            errorMessage += 'This account has been disabled.';
+                            break;
+                        case 'auth/user-not-found':
+                        case 'auth/wrong-password':
+                            errorMessage += 'Invalid email or password.';
+                            break;
+                        default:
+                            errorMessage += error.message;
+                    }
+                    
+                    messageElement.textContent = errorMessage;
+                    messageElement.classList.add('error');
+                    console.error('Login error:', error);
+                });
+        });
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in, redirect to home page
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

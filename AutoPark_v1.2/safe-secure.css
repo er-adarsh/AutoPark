@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'aerial-serif', sans-serif;
+    margin: 0;
+    line-height: 1;
+    background-image: url('https://thumbs.dreamstime.com/b/orange-traffic-pole-asphalt-road-parking-lot-orange-traffic-pole-asphalt-road-parking-lot-138533844.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: white;
+    min-height: 100vh;
+    display: flex;  
+    padding: 0;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: powderblue;
+    padding: 15px;
+    font-family: 'Lobster', cursive;
+    justify-content: space-between;
+    display: flex;
+    text-align: center;
+}
+
+header h1 {
+    color: paleturquoise;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: 'Nosifer', sans-serif;
+    text-shadow: 0 0 6px white;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: paleturquoise;
+}
+
+
+header h1 a:hover {
+    color: powderblue;
+    text-shadow: 0 0 30px black, 0 0 5px rgba(183, 75, 75, 0.7);
+}
+
+nav {
+    margin-top: auto;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+nav a:hover, .active {
+    color: darkcyan;
+    text-shadow: 0 0 2px white;
+}
+
+main {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: black;
+    font-family: 'Nosifer',sans-serif;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover{
+    transform: scale(1.05);
+}
+
+.feature img {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px 0;
+}
+
+.feature p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 1px;
+    font-size: 0.9rem;
+}

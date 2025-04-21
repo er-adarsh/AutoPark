@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jokerman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signup.css">
+    <style>
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        .message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="logo-link">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main id="content">
+        <div class="signup-container">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" id="fullName" placeholder="Full Name" required><br>
+                <input type="email" id="email" placeholder="Email" required><br>
+                <input type="tel" id="mobile" placeholder="Mobile No." required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div id="signupMessage" class="message"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOLjRxraC5K-le7yv-kwvDQPea8Ju3z5s",
+            authDomain: "parkvue-7aad4.firebaseapp.com",
+            projectId: "parkvue-7aad4",
+            storageBucket: "parkvue-7aad4.firebasestorage.app",
+            messagingSenderId: "417337950143",
+            appId: "1:417337950143:web:0c5d9b01aaa51213ee2b0a",
+            measurementId: "G-W6KGZ59QDK"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Signup form submission
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageElement = document.getElementById('signupMessage');
+            
+            // Clear previous messages
+            messageElement.textContent = '';
+            messageElement.classList.remove('error', 'success');
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                messageElement.textContent = 'Passwords do not match!';
+                messageElement.classList.add('error');
+                return;
+            }
+            
+            // Validate password strength (optional)
+            if (password.length < 6) {
+                messageElement.textContent = 'Password should be at least 6 characters!';
+                messageElement.classList.add('error');
+                return;
+            }
+            
+            // Create user with email and password
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User created successfully, now store additional info in Firestore
+                    return db.collection('users').doc(userCredential.user.uid).set({
+                        name: fullName,
+                        email: email,
+                        mobile: mobile,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                })
+                .then(() => {
+                    // Registration complete
+                    messageElement.textContent = 'Registration successful! Redirecting to login...';
+                    messageElement.classList.add('success');
+                    
+                    // Redirect to login page after short delay
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                })
+                .catch((error) => {
+                    // Handle errors
+                    let errorMessage = 'Registration failed. ';
+                    switch(error.code) {
+                        case 'auth/email-already-in-use':
+                            errorMessage += 'Email is already in use.';
+                            break;
+                        case 'auth/invalid-email':
+                            errorMessage += 'Invalid email format.';
+                            break;
+                        case 'auth/weak-password':
+                            errorMessage += 'Password is too weak.';
+                            break;
+                        default:
+                            errorMessage += error.message;
+                    }
+                    
+                    messageElement.textContent = errorMessage;
+                    messageElement.classList.add('error');
+                    console.error('Signup error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

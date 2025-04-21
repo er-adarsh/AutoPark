@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto Park</title>
+    <link rel="icon" type="image/png" href="/autoparklogo.png" />
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">Auto Park</div>
+            <nav>
+                <a href="reservation.html">Reservations</a>
+                <a href="parking-options.html">Parking Options</a>
+                <a href="car-wash.html">Car Wash</a>
+                <a href="location.html">Location</a>
+                <span id="authContainer">
+                    <a href="login.html" id="loginLink">Login</a>
+                    <span id="userProfile" style="display:none;">
+                        <span id="userName"></span>
+                        <a href="#" id="logoutLink" style="margin-left:8px;">(Logout)</a>
+                    </span>
+                </span>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PARK SMARTLY</h1>
+            <p>Instantly book your space today. Trusted by millions.</p>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature">
+                <a href="safe-secure.html"><img src="4.jpeg.jpg" alt="Safe and Secure" class="double-size"></a> 
+                <h3>Safe and Secure</h3>
+                <p>24-hour surveillance to ensure your car is safe and secure while you are away.</p>
+            </div>
+            <div class="feature">
+                <a href="concierge.html"><img src="1.jpeg.jpg" alt="Concierge Options" class="double-size"></a> 
+                <h3>Concierge Options</h3>
+                <p>Take advantage of our Concierge service and have someone help you with your departure.</p>
+            </div>
+            <div class="feature">
+                <a href="valet-parking.html"><img src="2.jpeg.jpg" alt="Just Steps" class="double-size"></a> 
+                <h3>Valet Parking</h3>
+                <p>Simple drop-off and go with our Parking service. Why not add a car wash!</p>
+            </div>
+            <div class="feature">
+                <a href="car-wash.html"><img src="3.png" alt="Car Wash" class="double-size"></a> 
+                <h3>Car Wash</h3>
+                <p>Simple drive up and go with our Parking service. Why not add a car wash!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+    <script src="script.js"></script> 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOLjRxraC5K-le7yv-kwvDQPea8Ju3z5s",
+            authDomain: "parkvue-7aad4.firebaseapp.com",
+            projectId: "parkvue-7aad4",
+            storageBucket: "parkvue-7aad4.firebasestorage.app",
+            messagingSenderId: "417337950143",
+            appId: "1:417337950143:web:0c5d9b01aaa51213ee2b0a",
+            measurementId: "G-W6KGZ59QDK"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Check auth state
+        auth.onAuthStateChanged(user => {
+            const loginLink = document.getElementById('loginLink');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.getElementById('userName');
+            const logoutLink = document.getElementById('logoutLink');
+
+            if (user) {
+                // User is logged in
+                loginLink.style.display = 'none';
+                userProfile.style.display = 'inline';
+                
+                // Get user's name from Firestore
+                db.collection('users').doc(user.uid).get()
+                    .then(doc => {
+                        if (doc.exists) {
+                            userName.textContent = doc.data().name || user.email.split('@')[0];
+                        } else {
+                            userName.textContent = user.email.split('@')[0];
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error getting user data:", error);
+                        userName.textContent = user.email.split('@')[0];
+                    });
+
+                // Logout functionality
+                logoutLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    auth.signOut()
+                        .then(() => {
+                            window.location.href = 'index.html';
+                        })
+                        .catch(error => {
+                            console.error('Logout error:', error);
+                        });
+                });
+            } else {
+                // User is logged out
+                loginLink.style.display = 'inline';
+                userProfile.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

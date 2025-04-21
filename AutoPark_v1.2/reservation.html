@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Parking - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reservation.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="reservation.html" class="active">Reserve Parking</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-container">
+            <div class="reservation-form">
+                <h2>Reserve Your Parking Spot</h2>
+                <form id="reservationForm">
+                    <label for="parkingLot">Select Parking Lot:</label>
+                    <select id="parkingLot" required>
+                        <option value="A1">A1 - Near Mall Entrance</option>
+                        <option value="B2">B2 - Underground Parking</option>
+                        <option value="C3">C3 - Open Space</option>
+                    </select>
+
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="time">Select Time:</label>
+                    <input type="time" id="time" step="3600" required>
+
+                    <label for="duration">Select Duration (hours):</label>
+                    <input type="number" id="duration" min="1" max="24" required>
+
+                    <p id="priceDisplay">Total Price: ₹0</p>
+
+                    <button type="submit">Reserve Now</button>
+                </form>
+            </div>
+
+            <div class="occupancy-viewer">
+                <h2>Parking Occupancy</h2>
+                <div class="date-selector">
+                    <label for="viewDate">View Date:</label>
+                    <input type="date" id="viewDate">
+                    <button id="viewBtn">View</button>
+                </div>
+                <div class="occupancy-list" id="occupancyList">
+                    <p>Select a date to view occupancy</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="reservation.js"></script>
+</body>
+</html>

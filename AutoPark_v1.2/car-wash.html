@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Wash - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="car-wash.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="car-wash.html" class="active">Car Wash</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Choose Your Car Wash Package</h2>
+        <div class="wash-container">
+            <div class="wash-card">
+                <img src="https://static.vecteezy.com/system/resources/previews/016/295/355/large_2x/blue-car-in-a-car-wash-photo.jpg" alt="Basic Wash">
+                <h3>Basic Wash</h3>
+                <p>Exterior wash with high-pressure rinse & dry.</p>
+                    <p id="priceDisplay">Total Price: ₹0</p>
+                <p><strong>Price: ₹500</strong></p>
+                <button onclick="bookWash('Basic Wash')">Book Now</button>
+            </div>
+
+            <div class="wash-card">
+                <img src="https://wallpapercave.com/wp/wp2221878.jpg" alt="Premium Wash">
+                <h3>Premium Wash</h3>
+                <p>Exterior & interior cleaning, tire shine included.</p>
+                <p><strong>Price: ₹800</strong></p>
+                <button onclick="bookWash('Premium Wash')">Book Now</button>
+            </div>
+
+            <div class="wash-card">
+                <img src="https://th.bing.com/th/id/R.b0f2f4612ee785f416dba73c3c7c8527?rik=8zYy0WjuhiyFNA&riu=http%3a%2f%2fcarwashtouchless.com%2fwp-content%2fuploads%2f2015%2f10%2fLeisuwash-350-high-pressure-wash-2.jpg&ehk=8Qii4UI%2bSEURC6rxZS9nsFYlet2Yd2iijMLe30DaSJg%3d&risl=&pid=ImgRaw&r=0" alt="Deluxe Wash">
+                <h3>Deluxe Wash</h3>
+                <p>Full detailing, waxing, and deep interior cleaning.</p>
+                <p><strong>Price: ₹1100</strong></p>
+                <button onclick="bookWash('Deluxe Wash')">Book Now</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <script src="car-wash.js"></script>
+</body>
+</html>

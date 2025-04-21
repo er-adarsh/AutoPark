@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'aerial-serif',sans-serif;
+    margin: 0;
+    line-height: 1.8;
+    background-color: #f0f0f0;
+    background-image: url('home_bg5.webp');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: white;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header {
+    background-color: #002639; 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    margin-top: auto;
+
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: paleturquoise;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: 'Nosifer', sans-serif;
+    text-shadow: 0 0 4px white;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin-top: auto;
+}
+.logo:hover{
+    color: powderblue;
+    text-shadow: 0 0 30px black, 0 0 5px rgba(183, 75, 75, 0.7);
+}
+.logo span{
+    color:white;
+    text-shadow: 0 0 10px skyblue;
+}
+
+nav {
+    margin-top: auto;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+nav a:hover{
+    color: darkcyan;
+    text-shadow: 0 0 2px white;
+}
+
+nav span {
+    margin-left: 20px;
+}
+
+.hero {
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+    .hero {
+        padding: 50px 0;
+    }
+}
+
+.features {
+    padding: 50px 0;
+    margin-top: 150px; 
+}
+
+.features .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+}
+
+.feature {
+    text-align: center;
+    margin-top: 150px; 
+}
+
+.feature img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.feature a {
+    display: inline-block; 
+}
+
+.feature a:hover img {
+    transform: scale(1.1); 
+    box-shadow: 0 0 35px 4px powderblue; 
+}
+
+.double-size { 
+    width: 200px; 
+    height: 200px; 
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    font-size: 1rem;
+}
+#userProfile {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#userName {
+    font-weight: bold;
+    color: #333;
+}
+
+#logoutLink {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+#logoutLink:hover {
+    text-decoration: underline;
+}

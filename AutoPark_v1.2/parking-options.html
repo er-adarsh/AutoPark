@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Options - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="parking-options.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="parking-options.html" class="active">Parking Options</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Parking Lots</h2>
+        <div class="parking-container">
+            <div class="parking-card">
+                <img src="https://thumbs.dreamstime.com/b/parking-lot-21343870.jpg" alt="A1 - Near Mall Entrance">
+                <h3>A1 - Near Mall Entrance</h3>
+                <p>Secure parking near the main mall entrance. 24/7 surveillance.</p>
+                <button onclick="reserveSpot('A1')">Reserve Now</button>
+            </div>
+
+            <div class="parking-card">
+                <img src="https://img.freepik.com/premium-photo/underground-car-parking-garage_807513-1393.jpg" alt="B2 - Underground Parking">
+                <h3>B2 - Underground Parking</h3>
+                <p>Climate-controlled underground parking. Ideal for long stays.</p>
+                <button onclick="reserveSpot('B2')">Reserve Now</button>
+            </div>
+
+            <div class="parking-card">
+                <img src="https://www.motorbiscuit.com/wp-content/uploads/2021/07/Used-Car-Lot.jpg" alt="C3 - Open Space">
+                <h3>C3 - Open Space</h3>
+                <p>Budget-friendly open parking with easy access to exits.</p>
+                <button onclick="reserveSpot('C3')">Reserve Now</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <script src="parking-options.js"></script>
+</body>
+</html>

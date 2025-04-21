@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'aerial-serif', sans-serif;
+    margin: 0;
+    line-height: 1;
+    background-image: url('https://png.pngtree.com/background/20230425/original/pngtree-parking-lot-full-of-blue-picture-image_2478450.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: white;
+    min-height: 100vh;
+    display: flex;  
+    padding: 0;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: powderblue;
+    padding: 10px;
+    font-family: 'Lobster', cursive;
+    justify-content: space-between;
+    display: flex;
+}
+
+header h1 {
+    color: paleturquoise;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: 'Nosifer', sans-serif;
+    text-shadow: 0 0 5px powderblue;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: paleturquoise;
+}
+
+header h1 a:hover {
+    color: powderblue;
+    text-shadow: 0 0 30px black, 0 0 5px rgba(183, 75, 75, 0.7);
+}
+
+nav {
+    margin-top: auto;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: darkcyan;
+    text-shadow: 0 0 2px white;
+}
+
+.main-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 30px;
+}
+
+.reservation-form, .occupancy-viewer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    flex: 1;
+}
+
+.reservation-form {
+    max-width: 400px;
+}
+
+.occupancy-viewer {
+    max-width: 500px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: white;
+    font-family: 'Nosifer', sans-serif;
+    text-align: center;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-block: 10px; 
+    font-family: 'Lobster', cursive;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #f0f0f0;
+}
+
+#priceDisplay {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    color: lightgreen;
+    font-family: 'Nosifer', sans-serif;
+}
+
+button {
+    padding: 10px;
+    background-color: turquoise;
+    color: black;
+    border: none;
+    font-weight: bolder;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: darkcyan;
+    color: black;
+    box-shadow: 0 0 15px black;
+}
+
+.date-selector {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-selector input {
+    flex: 1;
+}
+
+.date-selector button {
+    width: auto;
+    padding: 10px 20px;
+}
+
+.occupancy-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.time {
+    font-weight: bold;
+}
+
+.status {
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.available {
+    background: rgba(0, 255, 0, 0.2);
+    color: lightgreen;
+}
+
+.booked {
+    background: rgba(255, 0, 0, 0.2);
+    color: lightcoral;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 1px;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .reservation-form, .occupancy-viewer {
+        max-width: 100%;
+    }
+}
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.time-slot:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.time-slot.user-reservation {
+    border-left: 4px solid #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.time {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.status {
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.available {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.booked {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+.user-reservation .booked {
+    background: rgba(76, 175, 80, 0.3);
+    color: #2E7D32;
+}
+
+.full-day {
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.error-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-message button {
+    margin-top: 10px;
+    background: #f44336;
+    color: white;
+}
+
+.error-message button:hover {
+    background: #d32f2f;
+}
+
+.confirmation {
+    background: rgba(76, 175, 80, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+.error-message .small {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* Add a simple loading animation */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.loading-message {
+    animation: pulse 1.5s infinite;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location - Auto Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="location.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Auto Park</a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="location.html" class="active">Location</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Find Us Here</h2>
+        <div class="location-container">
+            <div class="address">
+                <h3>Auto Park Main Branch</h3>
+                <p>123 park avenue, near DLF mall of India, Sector 18, Noida 201301</p>
+                <p><strong>Phone:</strong> +91 9245637890</p>
+                <p><strong>Email:</strong> support@autopark.com</p>
+                <button onclick="openGoogleMaps()">Get Directions</button>
+            </div>
+
+            <div class="map">
+                <iframe id="googleMap" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Auto_Park Foundation 2025</p>
+    </footer>
+
+    <script src="location.js"></script>
+</body>
+</html>
